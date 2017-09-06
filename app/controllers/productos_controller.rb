@@ -6,6 +6,10 @@ class ProductosController < ApplicationController
 
   end
 
+  def search
+    #code
+  end
+
   private
   def productos
     @productos = Producto.all
