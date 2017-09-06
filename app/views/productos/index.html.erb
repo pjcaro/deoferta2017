@@ -1,0 +1,54 @@
+<h1>Productos</h1>
+<div class="">
+  <div class="row">
+    <% @productos.each do |product| %>
+      <div class="col s4">
+        <div class="card">
+          <div class="card-image waves-effect waves-block waves-light">
+            <img src="<%= product.image %>">
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4 small"><%= truncate(product.title, length: 32) %>
+              <div class="inline-flex">
+                Desde <p class="green-text"> <%= product.price %></p>
+              </div>
+              <i class="material-icons right">Ver más</i>
+            </span>
+            <img class="img-tienda" src="http://www.cybermonday.com.ar/uploads/marcas/33/logo-garba.jpg" alt="">
+            <p><a href="<%= product.permalink %>" target='blank'>Ir a publicación</a></p>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">Mas precios<i class="material-icons right">X</i></span>
+            <ul class="collection">
+              <li class="collection-item">
+                $3.669
+                <img class="img-tienda" src="http://www.arriba-argentina.it/images/fravegaicon.jpg" alt="">
+              </li>
+              <li class="collection-item">
+                $3.669
+                <img class="img-tienda" src="http://cdna.hotsale.com.ar/uploads/marcas/7/musimundo.png" alt="">
+              </li>
+
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<style media="screen">
+  .small{
+    font-size: 1em!important;
+  }
+  .green-text{
+    color: 'green'
+  }
+  .inline-flex{
+        display: inline-flex;
+  }
+  .img-tienda{
+    width: 80px;
+  }
+</style>
