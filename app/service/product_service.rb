@@ -1,7 +1,7 @@
 class ProductService
 
   def self.obtenerProductos
-    server = "http://localhost:8888"
+    server = "https://deoferta-ws.herokuapp.com/"
     url = "https://www.garbarino.com/productos/tv-led-y-smart-tv/4342"+"?page=1"
 
     products = HTTParty.post(server,
@@ -15,7 +15,7 @@ class ProductService
       :headers => { 'Content-Type' => 'application/json' },
       :query => query
       )
-      
-  end  
-  
+
+  end
+
 end
