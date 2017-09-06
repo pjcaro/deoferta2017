@@ -12,8 +12,7 @@ class ProductService
                :limit => 1,
                :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]"}
              }.to_json,
-      :headers => { 'Content-Type' => 'application/json' },
-      :query => query
+      :headers => { 'Content-Type' => 'application/json' }
       )
 
   end
