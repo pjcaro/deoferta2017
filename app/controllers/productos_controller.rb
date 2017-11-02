@@ -7,11 +7,11 @@ class ProductosController < ApplicationController
   end
 
   def search
-    #code
+    @productos = Producto.where(:image.ne => nil, :marketplace.ne => "Linio.com.ar").to_a.sample(20)
   end
 
   private
   def productos
-    @productos = Producto.all
+    @productos = Producto.where(:image.ne => nil, :marketplace.ne => "Linio.com.ar").to_a.sample(20)
   end
 end

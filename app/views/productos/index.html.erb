@@ -10,7 +10,7 @@
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4 small"><%= truncate(product.title, length: 32) %>
               <div class="inline-flex">
-                Desde <p class="green-text"> <%= product.price %></p>
+                Desde <p class="green-text"> <%= product.precios.first.valor %></p>
               </div>
               <i class="material-icons right">Ver más</i>
             </span>

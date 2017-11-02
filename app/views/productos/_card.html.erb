@@ -1,0 +1,21 @@
+<div class="card small-card">
+  <div class="card-image waves-effect waves-block waves-light  image">
+    <% if producto.image.nil? || producto.marketplace == "Linio.com.ar"%>
+      <%= image_tag "default.png", class: 'margin-default-image activator image' %>
+      <p class="precio">Hola</p>
+    <% else %>
+      <%= image_tag producto.image, class: 'activator image' %>
+      <p class="precio btn"><%= producto.precios.last.valor %></p>
+    <% end %>
+  </div>
+  <div class="card-content">
+    <span class="card-title activator grey-text text-darken-4"><%= truncate(producto.title, length: 30) %><i class="material-icons right">more_vert</i></span>
+    <p><a href="<%=producto.permalink %>" target="_blank">Ir a la tienda</a></p>
+    <p>
+    </p>
+  </div>
+  <div class="card-reveal">
+    <span class="card-title grey-text text-darken-4"><%= producto.title %><i class="material-icons right">close</i></span>
+    <a href="#" class="btn btn-primary">historial</a>
+  </div>
+</div>

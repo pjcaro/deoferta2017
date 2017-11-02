@@ -9,6 +9,15 @@ gem 'whenever', :require => false
 # request http
 gem 'httparty'
 
+## CSS
+
+gem "jquery-slick-rails"
+
+gem 'materialize-sass'
+gem 'material_icons'
+
+
+
 gem 'responders'
 
 gem 'mongoid'

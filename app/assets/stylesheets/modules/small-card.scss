@@ -1,0 +1,22 @@
+.small-card{
+    width: 40%!important;
+    .image {
+
+      position: relative;
+
+      width: 100%; /* for IE 6 */
+
+    }
+    .precio {
+
+      position: absolute;
+
+      top: 10px;
+
+      left: 70%;
+
+      width: 30%;
+
+      font-weight: bold;
+    }
+}
