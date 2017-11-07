@@ -12,12 +12,13 @@ gem 'httparty'
 ## CSS
 
 gem "jquery-slick-rails"
-
 gem 'materialize-sass'
 gem 'material_icons'
 
+gem 'gon'
 
-
+gem 'devise'
+gem 'kaminari'
 gem 'responders'
 
 gem 'mongoid'

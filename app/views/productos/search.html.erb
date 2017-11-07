@@ -1,39 +1,48 @@
-<div class="buscador-principal">
-  <div class="margin">
-    <!-- <div class="center">
-      <%= image_tag('logodeoferta.png', class: 'img-fluid') %>
-    </div> -->
-    <div class="center">
-      <%= form_tag(productos_path, method: :get, class: 'buscador') do %>
-        <%= text_field_tag 'query', nil, placeholder: 'Que es lo que estas buscando?' %>
-        <i class="material-icons">search</i>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="productos-slider">
-    <div class="col s4 offset-s4 center">
-      <div class="slider-for">
-        <% @productos.each do |producto| %>
-          <%= render 'card', producto: producto %>
+<div class="container">
+  <div class="buscador-principal">
+    <div class="margin">
+      <!-- <div class="center">
+        <%= image_tag('logodeoferta.png', class: 'img-fluid') %>
+      </div> -->
+      <div class="center">
+        <%= form_tag(productos_path, method: :get, class: 'buscador') do %>
+          <%= text_field_tag 'query', nil, placeholder: 'Que es lo que estas buscando?' %>
+          <i class="material-icons">search</i>
         <% end %>
       </div>
     </div>
 
-    <div class="col s8 offset-s2 center">
-      <div class="">
-        <div class="slider-nav">
-          <% @productos.each do |producto| %>
-            <% if producto.image.nil? || producto.marketplace == "Linio.com.ar"%>
-              <%= image_tag "default.png", class: 'margin-default-image' %>
-            <% else %>
-              <%= image_tag producto.image %>
-            <% end %>
+    <div class="productos-slider">
 
+      <div class="col s8 offset-s2 center">
+        <div class="">
+          <div class="slider-nav">
+            <% @productos.each do |producto| %>
+              <% if producto.image.nil? || producto.marketplace == "Linio.com.ar"%>
+                <%= image_tag "default.png", class: 'margin-default-image' %>
+              <% else %>
+                <%= image_tag producto.image %>
+              <% end %>
+
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col s4 offset-s4 center">
+        <div class="slider-for">
+          <% @productos.each do |producto| %>
+            <%= render 'card', producto: producto %>
           <% end %>
         </div>
       </div>
+
     </div>
+
   </div>
 
 </div>
+<style media="screen">
+  .small-card{
+    width: 40%!important;
+  }
+</style>

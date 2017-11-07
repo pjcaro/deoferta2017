@@ -10,9 +10,10 @@ namespace :update_products do
         Producto.guardarProductos(data, marketplace)
         p marketplace
       else
+        p '-----------------------------'
         p 'null'
         p site
-
+        p '-----------------------------'
       end
     end
 

@@ -1,0 +1,56 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+<div class="container">
+  <div class="row">
+    <h3 class="center grey-text"><%= @producto.title %></h2>
+  </div>
+  <div class="row center">
+    <% if @producto.image.nil? || @producto.marketplace == "Linio.com.ar"%>
+      <%= image_tag "default.png", class: 'margin-default-image activator image' %>
+    <% else %>
+      <%= image_tag @producto.image, class: 'activator image' %>
+    <% end %>
+  </div>
+  <div class="row">
+    <div id="historial" style="width:100%; height:400px;"></div>
+
+  </div>
+
+</div>
+
+
+<script type="text/javascript">
+Highcharts.chart('historial', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: 'Historial de precio'
+    },
+    subtitle: {
+        text: ''
+    },
+    xAxis: {
+        categories: gon.fechas
+    },
+    yAxis: {
+        title: {
+            text: 'Pesos ($)'
+        }
+    },
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true
+            },
+            enableMouseTracking: false
+        }
+    },
+    series: [{
+        name: 'Precios ($)',
+        data: gon.precios
+      }]
+});
+
+console.log(gon.precios)
+</script>
