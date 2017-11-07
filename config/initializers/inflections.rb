@@ -18,4 +18,5 @@
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'producto', 'productos'
   inflect.irregular 'precio', 'precios'
+  inflect.irregular 'favorito', 'favoritos'
 end

@@ -2,7 +2,22 @@
   <div class="nav-wrapper">
     <%= link_to 'DeOferta', root_path, class: 'brand-logo' %>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="collapsible.html">Iniciar Sesión</a></li>
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to 'Favoritos', favoritos_path %>
+        </li>
+        <li>
+          <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>
+        </li>
+      <% else %>
+
+        <li>
+          <%= link_to 'Iniciar sesión', new_user_session_path %>
+        </li>
+        <li>
+          <%= link_to 'Registrarse', new_user_registration_path %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </nav>

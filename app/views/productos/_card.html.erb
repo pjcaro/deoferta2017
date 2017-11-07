@@ -1,4 +1,8 @@
 <div class="card small-card">
+  <div class="value <%= producto.id %>-fav" data-toggle="tooltip" data-placement="top" title="Agregar a favoritos">
+    <%= favorito_link(producto) %>
+  </div>
+
   <div class="card-image waves-effect waves-block waves-light  image">
     <% if producto.image.nil? || producto.marketplace == "Linio.com.ar"%>
       <%= image_tag "default.png", class: 'margin-default-image activator image' %>

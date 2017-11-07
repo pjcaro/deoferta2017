@@ -9,6 +9,7 @@ class Producto
 
   # field :price, type: String
   has_many :precios, autosave: true, dependent: :destroy
+  has_many :favoritos
 
 
   def self.guardarProductos(response, marketplace)

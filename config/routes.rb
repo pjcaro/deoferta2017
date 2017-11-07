@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :productos
+  resources :favoritos, only: [:create, :destroy, :index]
   root 'productos#search'
 
   get 'productos/:id/historial', to: 'productos#historial', as: 'historial_producto'

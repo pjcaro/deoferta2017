@@ -3,3 +3,11 @@ $primary-color: color("blue", "lighten-2") !default;
 $secondary-color: color("pink", "base") !default;
 @import 'materialize';
 @import "material_icons";
+
+
+.no-fav{
+  color: #b7b7b7!important;
+}
+.fav{
+  color: red!important;
+}

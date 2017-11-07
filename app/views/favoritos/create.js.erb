@@ -1,0 +1,5 @@
+<% if current_user %>
+  $(".<%= @producto.id %>-fav").html("<%= escape_javascript favorito_link(@producto) %>");
+<% else %>
+  window.location = '<%= new_user_session_path %>'
+<% end %>
