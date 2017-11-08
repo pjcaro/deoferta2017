@@ -14,7 +14,7 @@
 
     <div class="productos-slider">
 
-      <div class="col s8 offset-s2 center">
+      <div class="col m8 offset-m2 center">
         <div class="">
           <div class="slider-nav">
             <% @productos.each do |producto| %>
@@ -28,7 +28,7 @@
           </div>
         </div>
       </div>
-      <div class="col s4 offset-s4 center">
+      <div class="col m4 offset-m4 center">
         <div class="slider-for">
           <% @productos.each do |producto| %>
             <%= render 'card', producto: producto %>
@@ -42,7 +42,9 @@
 
 </div>
 <style media="screen">
-  .small-card{
-    width: 40%!important;
+  @media (min-width: 767px) {
+    .small-card{
+      width: 40%!important;
+    }
   }
 </style>

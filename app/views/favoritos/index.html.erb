@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <% @favoritos.each do |fav| %>
-      <div class="col s4">
+      <div class="col m4">
         <%= render 'productos/card', producto: fav.producto  %>
       </div>
     <% end %>
