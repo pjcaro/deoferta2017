@@ -5,12 +5,7 @@
       <!-- <div class="center">
         <%= image_tag('logodeoferta.png', class: 'img-fluid') %>
       </div> -->
-      <div class="center">
-        <%= form_tag(productos_path, method: :get, class: 'buscador') do %>
-          <%= text_field_tag 'query', nil, placeholder: 'Que es lo que estas buscando?' %>
-          <i class="material-icons">search</i>
-        <% end %>
-      </div>
+      <%= render 'productos/buscador' %>
     </div>
   </div>
   <div class="row">
