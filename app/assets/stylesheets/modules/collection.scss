@@ -1,3 +1,13 @@
+ul.collection > li{
+  span.title{
+    color: #263238;
+    font-weight: bold;
+  }
+  p.precio{
+    color: #263238;
+  }
+}
+
 ul.collection > li:first-child {
     background-color: #b9f6ca;
     height: 10em;
