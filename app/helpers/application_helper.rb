@@ -12,7 +12,7 @@ module ApplicationHelper
   end
 
   def favorito_link(resource)
-    classes = 'no-fav'
+    classes = 'no-fav secondary-content'
     href    = favoritos_path(producto_id: resource.id)
     method  = :post
     counter = ''
@@ -21,7 +21,7 @@ module ApplicationHelper
 
     if current_user && current_user.favorite?(resource)
       href = favorito_path(resource.id)
-      classes << ' fav'
+      classes << ' fav secondary-content'
       method  = :delete
     end
 

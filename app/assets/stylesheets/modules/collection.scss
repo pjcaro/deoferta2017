@@ -1,0 +1,14 @@
+ul.collection > li:first-child {
+    background-color: #b9f6ca;
+    height: 10em;
+    padding-top: 2em;
+    font-weight: bold;
+    p.precio{
+      color: #ff1744;
+      font-size: 2em;
+      padding: 10px;
+    }
+    span.title{
+      color: #263238;
+    }
+}

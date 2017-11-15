@@ -9,11 +9,28 @@
     </div>
   </div>
   <div class="row">
-    <% @productos.each do |producto| %>
-      <div class="col m4">
-        <%= render 'card', producto: producto %>
-      </div>
-    <% end %>
+    <ul class="collection">
+
+      <% @productos.each do |producto| %>
+          <li class="collection-item avatar">
+            <%= link_to historial_producto_path(producto), class:'sin-estilo' do %>
+              <img src="images/yuna.jpg" alt="" class="circle">
+              <% if producto.image.nil? || producto.marketplace == "Linio.com.ar"%>
+                <%= image_tag "default.png", class: 'circle' %>
+              <% else %>
+                <%= image_tag producto.image, class: 'circle' %>
+              <% end %>
+              <span class="title"><%= producto.title %></span>
+              <p class="precio"><%= number_to_currency(producto.precios.last.valor, precision: 0, :unit => "$") %> <br>
+              </p>
+                <%= link_to producto.marketplace, producto.permalink, target: "_blank" %>
+              <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+              <div class="value <%= producto.id %>-fav" data-toggle="tooltip" data-placement="top" title="Agregar a favoritos">
+                <%= favorito_link(producto) %>
+              </div>
+            <% end %>
+          </li>
+      <% end %>
   </div>
 
 </div>

@@ -2,6 +2,9 @@ namespace :update_products do
   desc "Actualizar productos desde server en node"
     task service_node: :environment do
 
+    p response = HTTParty.get('https://deoferta-ws.herokuapp.com/')
+
+
     App::SITES.each do |site|
       response = ProductService.obtenerProductos(site)
       data = response.parsed_response["data"].to_json
