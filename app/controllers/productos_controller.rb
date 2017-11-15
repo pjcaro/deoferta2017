@@ -14,11 +14,11 @@ class ProductosController < ApplicationController
   def historial
     @producto = Producto.find(params[:id])
 
-    gon.precios = @producto.precios.pluck(:valor)
+    gon.precios = @producto.precios.order_by(:created_at => 'asc').pluck(:valor)
 
     # gon.precios = int_array.map { |i| i.gsub(/[$.]/, '').to_i }
 
-    gon.fechas = @producto.precios.pluck(:created_at).map {|date| date.strftime('%d-%m-%Y') }.to_a
+    gon.fechas = @producto.precios.order_by(:created_at => 'asc').pluck(:created_at).map {|date| date.strftime('%d-%m-%Y') }.to_a
   end
 
   private

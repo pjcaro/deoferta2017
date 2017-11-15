@@ -6,10 +6,10 @@
   <div class="card-image waves-effect waves-block waves-light  image">
     <% if producto.image.nil? || producto.marketplace == "Linio.com.ar"%>
       <%= image_tag "default.png", class: 'margin-default-image activator image' %>
-      <p class="precio btn"><%= number_to_currency(producto.precios.last.valor, precision: 0, :unit => "$") %></p>
+      <p class="precio btn"><%= number_to_currency(producto.precio, precision: 0, :unit => "$") %></p>
     <% else %>
       <%= image_tag producto.image, class: 'activator image' %>
-      <p class="precio btn"><%= number_to_currency(producto.precios.last.valor, precision: 0, :unit => "$") %></p>
+      <p class="precio btn"><%= number_to_currency(producto.precio, precision: 0, :unit => "$") %></p>
     <% end %>
   </div>
   <div class="card-content">

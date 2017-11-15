@@ -21,7 +21,7 @@
                 <%= image_tag producto.image, class: 'circle' %>
               <% end %>
               <span class="title"><%= producto.title %></span>
-              <p class="precio"><%= number_to_currency(producto.precios.last.valor, precision: 0, :unit => "$") %> <br>
+              <p class="precio"><%= number_to_currency(producto.precio, precision: 0, :unit => "$") %> <br>
               </p>
                 <%= link_to producto.marketplace, producto.permalink, target: "_blank" %>
               <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
