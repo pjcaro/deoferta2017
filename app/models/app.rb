@@ -48,4 +48,6 @@ class App
     }
   ]
 
+  MK = ["Fravega", "Garbarino", "MercadoLibre"]
+
 end

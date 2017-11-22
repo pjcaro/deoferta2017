@@ -21,8 +21,32 @@ class ProductosController < ApplicationController
     gon.fechas = @producto.precios.order_by(:created_at => 'asc').pluck(:created_at).map {|date| date.strftime('%d-%m-%Y') }.to_a
   end
 
+  def filter
+    if params[:rango].nil?
+      @prods = Producto.all.where(title: /.*#{params[:query]}.*/i)
+              .any_of({marketplace: params[:marketplace][:marketplaces][0]},
+                      {marketplace: params[:marketplace][:marketplaces][1]},
+                      {marketplace: params[:marketplace][:marketplaces][2]})
+              .order_by(:precio => 'asc')
+    else
+      @prods = Producto.all.where(title: /.*#{params[:query]}.*/i, :precio.lte => params[:rango].to_i)
+              .any_of({marketplace: params[:marketplace][:marketplaces][0]},
+                      {marketplace: params[:marketplace][:marketplaces][1]},
+                      {marketplace: params[:marketplace][:marketplaces][2]})
+              .order_by(:precio => 'asc')
+
+    end
+
+
+    @productos = Kaminari.paginate_array(@prods).page(params[:page]).per(20)
+
+
+    render :index
+    #code
+  end
+
   private
   def producto_params
-    params.require(:producto).permit(:id, :title, :permalink, :image, :marketplace)
+    params.require(:producto).permit(:id, :title, :permalink, :image, :marketplace, :marketplaces)
   end
 end

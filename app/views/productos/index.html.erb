@@ -9,9 +9,45 @@
     </div>
   </div>
   <div class="row">
-    <ul class="collection">
+    <div class="col m3">
+      <ul class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header"><i class="material-icons">filter_drama</i>Filtrar</div>
+          <div class="collapsible-body">
+            Por Tienda <br>
+            <%= form_tag filter_productos_path, method: :get, id: 'filtro' do %>
+              <%= collection_check_boxes(:marketplace ,:marketplaces, Marketplace.all.to_a, :nombre, :nombre) do |b| %>
+                    <div class="collection-check-box no-mostrar">
+                      <%= b.check_box(class: 'check_categories') %>
+                      <%= b.label %>
+                    </div>
+                <% end %>
+                <%= hidden_field_tag :query, params[:query] %>
+                <br>
+                Por precios
+                <div class="radio-buttons">
+                  <%= radio_button_tag(:rango, 6000) %>
+                  <%= label_tag(:rango_6000, "Hasta 6000") %>
+                  <%= radio_button_tag(:rango, 10000) %>
+                  <%= label_tag(:rango_10000, "Hasta 10000") %>
+                </div>
+                <div class="row center">
+                  <br>
+                  <%= button_tag "Filtrar", class: 'btn btn-primary' %>
+                </div>
+            <% end %>
 
-      <% @productos.each do |producto| %>
+
+          </div>
+
+        </li>
+      </ul>
+
+    </div>
+    <div class="col m9">
+
+      <ul class="collection">
+        <% @productos.each do |producto| %>
           <li class="collection-item avatar">
             <%= link_to historial_producto_path(producto), class:'sin-estilo' do %>
               <img src="images/yuna.jpg" alt="" class="circle">
@@ -33,7 +69,11 @@
               </div>
             <% end %>
           </li>
-      <% end %>
+        <% end %>
+      </ul>
+
+    </div>
+
   </div>
 
 </div>

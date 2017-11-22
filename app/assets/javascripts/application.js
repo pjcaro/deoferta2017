@@ -39,4 +39,16 @@ $(document).ready(function(){
       draggable: true // Choose whether you can drag to open on touch screens
     }
   );
+  $('.collapsible').collapsible();
+
+  marketplaces();
+
 });
+
+function marketplaces(){
+  $('.marketplaces').change(function(){
+    if($('.marketplaces').is(':checked')){
+      console.log(this.id);
+    }
+  });
+}
