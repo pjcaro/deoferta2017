@@ -22,12 +22,17 @@ class ProductosController < ApplicationController
   end
 
   def filter
+    # raise
     if params[:rango].nil?
       @prods = Producto.all.where(title: /.*#{params[:query]}.*/i)
               .any_of({marketplace: params[:marketplace][:marketplaces][0]},
                       {marketplace: params[:marketplace][:marketplaces][1]},
                       {marketplace: params[:marketplace][:marketplaces][2]})
               .order_by(:precio => 'asc')
+    elsif params[:marketplace][:marketplaces] == [""] && !params[:rango].nil?
+      @prods = Producto.all.where(title: /.*#{params[:query]}.*/i, :precio.lte => params[:rango].to_i)
+              .order_by(:precio => 'asc')
+
     else
       @prods = Producto.all.where(title: /.*#{params[:query]}.*/i, :precio.lte => params[:rango].to_i)
               .any_of({marketplace: params[:marketplace][:marketplaces][0]},
