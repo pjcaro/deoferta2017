@@ -4,6 +4,9 @@ $secondary-color: color("pink", "base") !default;
 @import 'materialize';
 @import "material_icons";
 
+body{
+  font-family: "Lato", sans-serif;
+}
 
 .no-fav{
   color: #b7b7b7!important;
@@ -14,4 +17,106 @@ $secondary-color: color("pink", "base") !default;
 .btn-sin-estilo{
   background: none;
   border: none;
+}
+
+.destacados{
+  color: dimgrey;
+  font-style: italic;
+  font-weight: bold;
+}
+
+
+
+nav {
+  position: relative;
+  top: 0;
+  transition: background-color .3s, opacity .2s, visibility 0s;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+nav .nav-background {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  opacity: .1;
+}
+
+nav .nav-background img, nav .nav-background .ea {
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  max-width: 100%;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  transition: opacity .7s;
+}
+
+nav .nav-background .ea {
+  top: 0;
+  bottom: 0;
+  -webkit-transform: none;
+  transform: none;
+  background-repeat: repeat;
+}
+
+nav .nav-background img.k, nav .nav-background .ea.k {
+  opacity: 1;
+}
+
+nav.nav-extended .nav-wrapper {
+  min-height: 56px;
+  height: auto;
+}
+.db {
+  max-width: none;
+  margin: 0 auto; 
+}
+
+.nav-header .carousel .carousel-item, nav .nav-header {
+  word-break: break-word;
+}
+
+nav .nav-header {
+  clear: both;
+  padding: 40px 0;
+}
+
+.de, .center-align {
+  text-align: center;
+}
+
+nav .nav-header .ge {
+  display: block;
+  margin: -40px 0 40px 0;
+  color: rgba(255,255,255,0.8);
+}
+
+.af.lighten-1 {
+  background-color: rgba(72, 148, 210, 0.6) !important;
+}
+nav .categories-wrapper {
+  background-color: inherit;
+  height: 64px;
+}
+
+ul:not(.browser-default) {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.bt {
+  float: right !important;
+}
+nav ul {
+  margin: 0;
 }
