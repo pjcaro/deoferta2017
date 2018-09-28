@@ -120,3 +120,6 @@ ul:not(.browser-default) {
 nav ul {
   margin: 0;
 }
+#sidenav-overlay {
+  z-index: 1;
+}

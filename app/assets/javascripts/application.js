@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.slick
-//= require materialize
 //= require_tree .
 
 $(document).ready(function(){
@@ -40,7 +39,6 @@ $(document).ready(function(){
     }
   );
   $('.collapsible').collapsible();
-
   marketplaces();
 
 });
