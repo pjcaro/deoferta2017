@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/elastic/elasticsearch-rails.git
+  revision: 0ba3efc9840ec7cee1720ca69b0b30810c6d30fa
+  branch: 6.x
+  specs:
+    elasticsearch-model (6.0.0)
+      activesupport (> 3)
+      elasticsearch (> 1)
+      hashie
+    elasticsearch-rails (6.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -44,6 +55,9 @@ GEM
     bcrypt (3.1.12)
     bcrypt (3.1.12-x86-mingw32)
     bindex (0.5.0)
+    bonsai-elasticsearch-rails (6.0.0)
+      elasticsearch-model (~> 6)
+      elasticsearch-rails (~> 6)
     bson (4.3.0)
     builder (3.2.3)
     byebug (10.0.2)
@@ -68,11 +82,6 @@ GEM
       elasticsearch-transport (= 6.1.0)
     elasticsearch-api (6.1.0)
       multi_json
-    elasticsearch-model (6.0.0)
-      activesupport (> 3)
-      elasticsearch (> 1)
-      hashie
-    elasticsearch-rails (6.0.0)
     elasticsearch-transport (6.1.0)
       faraday
       multi_json
@@ -238,11 +247,12 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  bonsai-elasticsearch-rails (~> 6)
   byebug
   coffee-rails (~> 4.2)
   devise
-  elasticsearch-model
-  elasticsearch-rails
+  elasticsearch-model!
+  elasticsearch-rails!
   gon
   httparty
   jbuilder (~> 2.5)

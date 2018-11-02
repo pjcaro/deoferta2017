@@ -13,20 +13,32 @@ class Producto
   field :precio, type: Integer
 
   def as_indexed_json
-    as_json(except: [:id, :_id]) 
+    as_json(except: [:id, :_id])
   end
+
+  def self.search(query)
+    __elasticsearch__.search(
+      {
+        sort: [
+           { precio: {order: "desc"}},
+        ],
+        min_score: 0.8,
+        query: {
+          match: {
+            title: query
+          }
+        },
+
+      }
+    )
+  end
+
 
   # field :price, type: String
   has_many :precios, autosave: true, dependent: :destroy
   has_many :favoritos, dependent: :destroy
 
   accepts_nested_attributes_for :precios
-
-  def self.import_elasticsearch
-    Producto.all.to_a.each do |prod|
-      prod.import
-    end
-  end
 
   def self.guardarProductos(response, marketplace)
     require 'json'

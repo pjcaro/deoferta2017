@@ -6,9 +6,9 @@ git_source(:github) do |repo_name|
 end
 
 
-gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
-
+gem 'bonsai-elasticsearch-rails', '~> 6'
+gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: '6.x'
+gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: '6.x'
 
 # Cron jobs
 gem 'whenever', :require => false
