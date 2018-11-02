@@ -2,9 +2,13 @@ class ProductosController < ApplicationController
   respond_to :json, :html
 
   def index
-    @prods = Producto.all.where(title: /.*#{params[:query]}.*/i).order_by(:precio => 'asc')
+    #@prods = Producto.all.where(title: /.*#{params[:query]}.*/i).order_by(:precio => 'asc')
 
-    @productos = Kaminari.paginate_array(@prods).page(params[:page]).per(20)
+    #@productos = Kaminari.paginate_array(@prods).page(params[:page]).per(20)
+
+
+    @productos = Producto.search(params[:query]).page(params[:page]).per(20).records
+    
   end
 
   def search

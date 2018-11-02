@@ -1,6 +1,10 @@
 class Producto
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  index_name "productos-#{Rails.env}"
 
   field :title, type: String
   field :permalink, type: String
@@ -8,13 +12,33 @@ class Producto
   field :marketplace, type: String
   field :precio, type: Integer
 
+  def as_indexed_json
+    as_json(except: [:id, :_id])
+  end
+
+  def self.search(query)
+    __elasticsearch__.search(
+      {
+        sort: [
+           { precio: {order: "desc"}},
+        ],
+        min_score: 0.8,
+        query: {
+          match: {
+            title: query
+          }
+        },
+
+      }
+    )
+  end
+
 
   # field :price, type: String
   has_many :precios, autosave: true, dependent: :destroy
   has_many :favoritos, dependent: :destroy
 
   accepts_nested_attributes_for :precios
-
 
   def self.guardarProductos(response, marketplace)
     require 'json'
