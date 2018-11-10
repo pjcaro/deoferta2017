@@ -20,9 +20,9 @@ class Producto
     __elasticsearch__.search(
       {
         sort: [
-           { precio: {order: "desc"}},
+           { precio: {order: "asc"}},
         ],
-        min_score: 0.8,
+        min_score: 0.9,
         query: {
           match: {
             title: query
