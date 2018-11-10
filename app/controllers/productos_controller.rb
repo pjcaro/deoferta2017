@@ -7,8 +7,10 @@ class ProductosController < ApplicationController
     #@productos = Kaminari.paginate_array(@prods).page(params[:page]).per(20)
 
 
-    @productos = Producto.search(params[:query]).page(params[:page]).per(20).records
-    
+    @prods = Producto.search(params[:query]).records
+    @productos = Kaminari.paginate_array(
+      @prods.sort_by {|prod| prod.precio}
+    ).page(params[:page]).per(20)
   end
 
   def search
