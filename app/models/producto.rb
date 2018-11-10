@@ -12,7 +12,7 @@ class Producto
   field :marketplace, type: String
   field :precio, type: Integer
 
-  def as_indexed_json
+  def as_indexed_json(options={})
     as_json(except: [:id, :_id])
   end
 
@@ -52,9 +52,8 @@ class Producto
         prod.precios.where(valor: d['price'].gsub(/[$.]/, '').to_i).first_or_create
 
         prod.precio = prod.precios.last.valor
-
-        prod.save
-
+        p "Se guardo o no"
+        p prod.save
       end
 
     end
