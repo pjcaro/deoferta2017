@@ -1,29 +1,29 @@
 class App
   SITES = [
-    {
-      :url => "https://televisores.mercadolibre.com.ar/televisores/",
-      :recipe => {"title":"span.main-title", "permalink":"h2.item__title a@href", "price":"span.price__fraction", "image":"a.item-image img@src", "seller_username":"a.item__brand"},
-      :selector => "li.item.static-height",
-      :marketplace => "MercadoLibre",
-      :paginate => "li.pagination__next a@href",
-      :limit => 1
-    },
-    {
-      :url => "https://celulares.mercadolibre.com.ar/",
-       :recipe => {"title":"span.main-title", "permalink":"h2.item__title a@href", "price":"span.price__fraction", "image":"a.item-image img@src", "seller_username":"a.item__brand"},
-      :selector => "li.results-item",
-      :marketplace => "MercadoLibre",
-      :paginate => "li.pagination__next a@href",
-      :limit => 1
-    },
-    {
-      :url => "https://notebooks.mercadolibre.com.ar/",
-       :recipe => {"title":"span.main-title", "permalink":"a.item__info-link@href", "price":"span.price__fraction", "image":"a.item-image img@src", "seller_username":"a.item__brand"},
-      :selector => "li.results-item",
-      :marketplace => "MercadoLibre",
-      :paginate => "div.quantity-results",
-      :limit => 1
-    },
+    # {
+    #   :url => "https://televisores.mercadolibre.com.ar/televisores/",
+    #   :recipe => {"title":"span.main-title", "permalink":"h2.item__title a@href", "price":"span.price__fraction", "image":"a.item-image img@src", "seller_username":"a.item__brand"},
+    #   :selector => "li.item.static-height",
+    #   :marketplace => "MercadoLibre",
+    #   :paginate => "li.pagination__next a@href",
+    #   :limit => 1
+    # },
+    # {
+    #   :url => "https://celulares.mercadolibre.com.ar/",
+    #    :recipe => {"title":"span.main-title", "permalink":"h2.item__title a@href", "price":"span.price__fraction", "image":"a.item-image img@src", "seller_username":"a.item__brand"},
+    #   :selector => "li.results-item",
+    #   :marketplace => "MercadoLibre",
+    #   :paginate => "li.pagination__next a@href",
+    #   :limit => 1
+    # },
+    # {
+    #   :url => "https://notebooks.mercadolibre.com.ar/",
+    #    :recipe => {"title":"span.main-title", "permalink":"a.item__info-link@href", "price":"span.price__fraction", "image":"a.item-image img@src", "seller_username":"a.item__brand"},
+    #   :selector => "li.results-item",
+    #   :marketplace => "MercadoLibre",
+    #   :paginate => "div.quantity-results",
+    #   :limit => 1
+    # },
     {
       :url => "https://www.garbarino.com/productos/tv-led-y-smart-tv/4342",
       :recipe => {"title":"h3.itemBox--title", "permalink":"a.itemBox--info@href", "price":"span.value-item", "image":"div.itemBox--carousel img@src", "seller_username":""},
@@ -58,7 +58,7 @@ class App
        :marketplace => "Linio.com.ar",
        :paginate => "ul.pagination li:nth-last-child(2) a@href",
        :limit => 1,
-       :regex => {"image":"//(.*)"}
+       :regex => {"image":"//(.*)", "price": "^[^(.)]*"}
      },
      {
       :url => "https://www.linio.com.ar/c/pc-portatil/notebooks",
@@ -67,7 +67,7 @@ class App
       :marketplace => "Linio.com.ar",
       :paginate => "ul.pagination li:nth-last-child(2) a@href",
       :limit => 1,
-      :regex => {"image":"//(.*)"}
+      :regex => {"image":"//(.*)", "price": "^[^(.)]*"}
     },
      {
       :url => "https://www.linio.com.ar/c/televisores/smart-tv",
@@ -76,43 +76,44 @@ class App
       :marketplace => "Linio.com.ar",
       :paginate => "ul.pagination li:nth-last-child(2) a@href",
       :limit => 1,
-      :regex => {"image":"//(.*)"}
+      :regex => {"image":"//(.*)", "price": "^[^(.)]*"}
     },
      {
-       :url => "https://www.musimundo.com/catalogo/1570~audiotvvideo/1589~televisores/1992~smart-tv/Listado",
-       :recipe => {"title":"a.name", "brand":"a.brand@href", "permalink":"a.name@href", "price":"span.price.online", "image":"a.img img@src"},
+       :url => "https://www.musimundo.com/catalogo/1570~audio-tv-y-video/1589~televisores/1992~smart-tv/Listado?page=0&limitRows=36",
+       :recipe => {"title":"a.name", "brand":"a.brand@href", "permalink":"a.name@href", "price":"span.price", "image":"a.img img@src"},
        :selector => "article.product",
        :marketplace => "Musimundo",
        :paginate => "a.after@href",
        :limit => 1,
-       :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "brand":"search=(.*)", "price":"[^\\s]*$"}
+       :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "brand":"search=(.*)", "price": "^[^(,)]*"}
      },
      {
-      :url => "https://www.musimundo.com/catalogo/1615~telefonia/1616~telefonos-celulares/Listado",
-      :recipe => {"title":"a.name", "brand":"a.brand@href", "permalink":"a.name@href", "price":"span.price.online", "image":"a.img img@src"},
+      :url => "https://www.musimundo.com/catalogo/1615~telefonia/1616~telefonos-celulares/Listado?page=0&limitRows=36",
+      :recipe => {"title":"a.name", "brand":"a.brand@href", "permalink":"a.name@href", "price":"span.price", "image":"a.img img@src"},
       :selector => "article.product",
       :marketplace => "Musimundo",
       :paginate => "a.after@href",
       :limit => 1,
-      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "brand":"search=(.*)", "price":"[^\\s]*$"}
+      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "brand":"search=(.*)", "price": "^[^(,)]*"}
+
     },
     {
-      :url => "https://www.musimundo.com/catalogo/1625~computacion/1629~computadoras/1633~notebook/Listado",
-      :recipe => {"title":"a.name", "brand":"a.brand@href", "permalink":"a.name@href", "price":"span.price.online", "image":"a.img img@src"},
+      :url => "https://www.musimundo.com/catalogo/1625~informatica/1629~computadoras/1633~notebook/Listado?page=0&limitRows=36",
+      :recipe => {"title":"a.name", "brand":"a.brand@href", "permalink":"a.name@href", "price":"span.price", "image":"a.img img@src"},
       :selector => "article.product",
       :marketplace => "Musimundo",
       :paginate => "a.after@href",
       :limit => 1,
-      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "brand":"search=(.*)", "price":"[^\\s]*$"}
+      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "brand":"search=(.*)", "price": "^[^(,)]*"}
     },
     {
-      :url => "https://www.fravega.com/celulares/celulares-liberados",
+      :url => "https://www.fravega.com/celulares",
       :recipe => {"title":"div.image a@title", "permalink":"div.image a@href", "price":"em.BestPrice", "image":"div.image > a > img@src"},
-      :selector => "div.shelf-resultado > ul > li",
+      :selector => "li[layout=54558ffb-f4ae-4c69-8670-750769e299a8]",
       :marketplace => "Fravega",
       :paginate => "h1.titulo-sessao",
       :limit => 1,
-      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "price":"[^\\s]*$"}
+      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "price": "^[^(.)]*"}
     },
     {
       :url => "http://www.fravega.com/tv-y-video/tv",
@@ -121,7 +122,16 @@ class App
       :marketplace => "Fravega",
       :paginate => "li.last",
       :limit => 1,
-      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]"}
+      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "price": "^[^(.)]*"}
+    },
+    {
+      :url => "https://www.fravega.com/informatica/notebooks",
+      :recipe => {"title":"div.image a@title", "permalink":"div.image a@href", "price":"em.BestPrice", "image":"div.image > a > img@src"},
+      :selector => "li.informatica-compra-al-mejor-precio-en-fravega-com",
+      :marketplace => "Fravega",
+      :paginate => "li.last",
+      :limit => 1,
+      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "price": "^[^(.)]*"}
     }
   ]
 
