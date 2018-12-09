@@ -41,15 +41,24 @@ class Producto
   accepts_nested_attributes_for :precios
 
   def self.guardarProductos(response, marketplace)
+
+    if marketplace === "MercadoLibre"
+      image = 'thumbnail'
+      marketplace = 'MercadoLibre'
+    else
+      image = 'image'
+      marketplace = marketplace
+    end
+
     require 'json'
     data = JSON.parse(response)
     data.each do |d|
       unless d['price'].nil?
         prod = Producto.where(title: d['title'],
                               permalink: d['permalink'],
-                              image: d['image'],
+                              image: d[image],
                               marketplace: marketplace).first_or_create
-        prod.precios.where(valor: d['price'].gsub(/[$.]/, '').to_i).first_or_create
+        prod.precios.where(valor: d['price'].to_s.gsub(/[$.]/, '').to_i).first_or_create
 
         prod.precio = prod.precios.last.valor
         p "Se guardo o no"

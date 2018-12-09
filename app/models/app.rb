@@ -1,29 +1,29 @@
 class App
+  # {
+  #   :url => "https://televisores.mercadolibre.com.ar/televisores/",
+  #   :recipe => {"title":"span.main-title", "permalink":"h2.item__title a@href", "price":"span.price__fraction", "image":"a.item-image img@src", "seller_username":"a.item__brand"},
+  #   :selector => "li.item.static-height",
+  #   :marketplace => "MercadoLibre",
+  #   :paginate => "li.pagination__next a@href",
+  #   :limit => 1
+  # },
+  # {
+  #   :url => "https://celulares.mercadolibre.com.ar/",
+  #    :recipe => {"title":"span.main-title", "permalink":"h2.item__title a@href", "price":"span.price__fraction", "image":"a.item-image img@src", "seller_username":"a.item__brand"},
+  #   :selector => "li.results-item",
+  #   :marketplace => "MercadoLibre",
+  #   :paginate => "li.pagination__next a@href",
+  #   :limit => 1
+  # },
+  # {
+  #   :url => "https://notebooks.mercadolibre.com.ar/",
+  #    :recipe => {"title":"span.main-title", "permalink":"a.item__info-link@href", "price":"span.price__fraction", "image":"a.item-image img@src", "seller_username":"a.item__brand"},
+  #   :selector => "li.results-item",
+  #   :marketplace => "MercadoLibre",
+  #   :paginate => "div.quantity-results",
+  #   :limit => 1
+  # },
   SITES = [
-    # {
-    #   :url => "https://televisores.mercadolibre.com.ar/televisores/",
-    #   :recipe => {"title":"span.main-title", "permalink":"h2.item__title a@href", "price":"span.price__fraction", "image":"a.item-image img@src", "seller_username":"a.item__brand"},
-    #   :selector => "li.item.static-height",
-    #   :marketplace => "MercadoLibre",
-    #   :paginate => "li.pagination__next a@href",
-    #   :limit => 1
-    # },
-    # {
-    #   :url => "https://celulares.mercadolibre.com.ar/",
-    #    :recipe => {"title":"span.main-title", "permalink":"h2.item__title a@href", "price":"span.price__fraction", "image":"a.item-image img@src", "seller_username":"a.item__brand"},
-    #   :selector => "li.results-item",
-    #   :marketplace => "MercadoLibre",
-    #   :paginate => "li.pagination__next a@href",
-    #   :limit => 1
-    # },
-    # {
-    #   :url => "https://notebooks.mercadolibre.com.ar/",
-    #    :recipe => {"title":"span.main-title", "permalink":"a.item__info-link@href", "price":"span.price__fraction", "image":"a.item-image img@src", "seller_username":"a.item__brand"},
-    #   :selector => "li.results-item",
-    #   :marketplace => "MercadoLibre",
-    #   :paginate => "div.quantity-results",
-    #   :limit => 1
-    # },
     {
       :url => "https://www.garbarino.com/productos/tv-led-y-smart-tv/4342",
       :recipe => {"title":"h3.itemBox--title", "permalink":"a.itemBox--info@href", "price":"span.value-item", "image":"div.itemBox--carousel img@src", "seller_username":""},
@@ -134,7 +134,5 @@ class App
       :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "price": "^[^(.)]*"}
     }
   ]
-
-  MK = ["Fravega", "Garbarino", "MercadoLibre"]
-
+  
 end

@@ -9,10 +9,10 @@ class MercadoLibre
        url = build_url(categoria, offset, limit)
        require 'json'
        res = send_request(url)
-       p products.concat(res.parsed_response["results"].to_a)
+       products.concat(res.parsed_response["results"].to_a)
        offset += 50
     end
-
+    return products
   end
 
   private
