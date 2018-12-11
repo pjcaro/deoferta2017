@@ -19,16 +19,12 @@ class Producto
   def self.search(query)
     __elasticsearch__.search(
       {
-        sort: [
-           { precio: {order: "asc"}},
-        ],
-        min_score: 0.9,
+        min_score: 3,
         query: {
           match: {
             title: query
           }
-        },
-
+        }
       }
     )
   end

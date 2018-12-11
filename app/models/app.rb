@@ -80,7 +80,7 @@ class App
     },
      {
        :url => "https://www.musimundo.com/catalogo/1570~audio-tv-y-video/1589~televisores/1992~smart-tv/Listado?page=0&limitRows=36",
-       :recipe => {"title":"a.name", "brand":"a.brand@href", "permalink":"a.name@href", "price":"span.price", "image":"a.img img@src"},
+       :recipe => {"title":"a.name", "brand":"a.brand@href", "permalink":"a.name@href", "price":"span.price.online", "image":"a.img img@src"},
        :selector => "article.product",
        :marketplace => "Musimundo",
        :paginate => "a.after@href",
@@ -89,7 +89,7 @@ class App
      },
      {
       :url => "https://www.musimundo.com/catalogo/1615~telefonia/1616~telefonos-celulares/Listado?page=0&limitRows=36",
-      :recipe => {"title":"a.name", "brand":"a.brand@href", "permalink":"a.name@href", "price":"span.price", "image":"a.img img@src"},
+      :recipe => {"title":"a.name", "brand":"a.brand@href", "permalink":"a.name@href", "price":"span.price.online", "image":"a.img img@src"},
       :selector => "article.product",
       :marketplace => "Musimundo",
       :paginate => "a.after@href",
@@ -99,7 +99,7 @@ class App
     },
     {
       :url => "https://www.musimundo.com/catalogo/1625~informatica/1629~computadoras/1633~notebook/Listado?page=0&limitRows=36",
-      :recipe => {"title":"a.name", "brand":"a.brand@href", "permalink":"a.name@href", "price":"span.price", "image":"a.img img@src"},
+      :recipe => {"title":"a.name", "brand":"a.brand@href", "permalink":"a.name@href", "price":"span.price.online", "image":"a.img img@src"},
       :selector => "article.product",
       :marketplace => "Musimundo",
       :paginate => "a.after@href",

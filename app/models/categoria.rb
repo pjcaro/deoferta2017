@@ -2,12 +2,12 @@ class Categoria
 
   C = [
     {
-        "id": "MLA1051",
-        "name": "Celulares y Teléfonos"
+        "id": "MLA1055",
+        "name": "Celulares y Smartphones"
     },
     {
-        "id": "MLA1648",
-        "name": "Computación"
+        "id": "MLA4072",
+        "name": "Notebooks y accesorios"
     },
     {
        "id": "MLA1144",
@@ -18,11 +18,11 @@ class Categoria
         "name": "Electrodomésticos y Aires Ac."
     },
     {
-        "id": "MLA1000",
-        "name": "Electrónica, Audio y Video"
+        "id": "MLA3025",
+        "name": "Libros, Revistas y Comics"
     },
   ]
 
-  CATEGORIAS = ["MLA1051", "MLA1648", "MLA1144", "MLA5726", "MLA1000"]
+  CATEGORIAS = ["MLA1055", "MLA4072", "MLA1144", "MLA5726", "MLA3025"]
 
 end
