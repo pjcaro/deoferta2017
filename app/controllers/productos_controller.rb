@@ -33,7 +33,9 @@ class ProductosController < ApplicationController
       @prods = Producto.all.where(title: /.*#{params[:query]}.*/i)
               .any_of({marketplace: params[:marketplace][:marketplaces][0]},
                       {marketplace: params[:marketplace][:marketplaces][1]},
-                      {marketplace: params[:marketplace][:marketplaces][2]})
+                      {marketplace: params[:marketplace][:marketplaces][2]},
+                      {marketplace: params[:marketplace][:marketplaces][3]},
+                      {marketplace: params[:marketplace][:marketplaces][4]})
               .order_by(:precio => 'asc')
     elsif params[:marketplace][:marketplaces] == [""] && !params[:rango].nil?
       @prods = Producto.all.where(title: /.*#{params[:query]}.*/i, :precio.lte => params[:rango].to_i)
