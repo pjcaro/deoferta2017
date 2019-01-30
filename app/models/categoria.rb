@@ -21,8 +21,12 @@ class Categoria
         "id": "MLA3025",
         "name": "Libros, Revistas y Comics"
     },
+    {
+        "id": "MLA1002",
+        "name": "Televisores"
+    }
   ]
 
-  CATEGORIAS = ["MLA1055", "MLA4072", "MLA1144", "MLA5726", "MLA3025"]
+  CATEGORIAS = ["MLA1055", "MLA4072", "MLA1144", "MLA5726", "MLA3025", "MLA1002"]
 
 end
