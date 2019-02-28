@@ -19,6 +19,7 @@ class Producto
   def self.search(query)
     __elasticsearch__.search(
       {
+        size: 100,
         query: {
           match: {
             title: query
