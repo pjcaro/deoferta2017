@@ -19,7 +19,6 @@ class Producto
   def self.search(query)
     __elasticsearch__.search(
       {
-        min_score: 3,
         query: {
           match: {
             title: query
