@@ -1,7 +1,7 @@
 class MercadoLibre
 
   def self.obtenerProductos(categoria)
-    max = 1001
+    max = 500
     offset = 0
     limit = 50
     products = []
