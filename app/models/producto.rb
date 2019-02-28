@@ -50,11 +50,16 @@ class Producto
     data = JSON.parse(response)
     data.each do |d|
       unless d['price'].nil?
+        if marketplace === "MercadoLibre"
+          precio = d['price'].round.to_s.gsub(/[$.]/, '').to_i
+        else
+          precio = d['price'].to_s.gsub(/[$.]/, '').to_i
+        end
         prod = Producto.where(title: d['title'],
                               permalink: d['permalink'],
                               image: d[image],
                               marketplace: marketplace).first_or_create
-        prod.precios.where(valor: d['price'].to_s.gsub(/[$.]/, '').to_i).first_or_create
+        prod.precios.where(valor: precio).first_or_create
 
         prod.precio = prod.precios.last.valor
         p "Se guardo o no"
