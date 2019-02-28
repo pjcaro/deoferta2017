@@ -113,7 +113,7 @@ class App
       :marketplace => "Fravega",
       :paginate => "h1.titulo-sessao",
       :limit => 1,
-      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "price": "^[^(.)]*"}
+      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "price": "([^,]+)"}
     },
     {
       :url => "http://www.fravega.com/tv-y-video/tv",
@@ -122,7 +122,7 @@ class App
       :marketplace => "Fravega",
       :paginate => "li.last",
       :limit => 1,
-      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "price": "^[^(.)]*"}
+      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "price": "([^,]+)"}
     },
     {
       :url => "https://www.fravega.com/informatica/notebooks",
@@ -131,7 +131,7 @@ class App
       :marketplace => "Fravega",
       :paginate => "li.last",
       :limit => 1,
-      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "price": "^[^(.)]*"}
+      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "price": "([^,]+)"}
     }
   ]
   
