@@ -20,6 +20,7 @@ gem 'httparty'
 gem "jquery-slick-rails"
 gem 'materialize-sass'
 gem 'material_icons'
+gem 'nouislider-rails'
 
 gem 'gon'
 

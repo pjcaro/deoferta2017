@@ -28,8 +28,11 @@ class ProductosController < ApplicationController
   end
 
   def filter
+    menor = params[:rango_menor].to_i
+    mayor = params[:rango_mayor].to_i
+    array = [menor, mayor]
     # raise
-    if params[:rango].nil?
+    if mayor == 0 
       @prods = Producto.all.where(title: /.*#{params[:query]}.*/i)
               .any_of({marketplace: params[:marketplace][:marketplaces][0]},
                       {marketplace: params[:marketplace][:marketplaces][1]},
@@ -37,15 +40,21 @@ class ProductosController < ApplicationController
                       {marketplace: params[:marketplace][:marketplaces][3]},
                       {marketplace: params[:marketplace][:marketplaces][4]})
               .order_by(:precio => 'asc')
-    elsif params[:marketplace][:marketplaces] == [""] && !params[:rango].nil?
-      @prods = Producto.all.where(title: /.*#{params[:query]}.*/i, :precio.lte => params[:rango].to_i)
+    elsif params[:marketplace][:marketplaces] == [""] && mayor > 0
+      #method in no funciona para el where. REVISAR :precio.in => array
+      @prods = Producto.all.where(title: /.*#{params[:query]}.*/i, :precio.gte => menor, :precio.lte => mayor)
               .order_by(:precio => 'asc')
 
     else
-      @prods = Producto.all.where(title: /.*#{params[:query]}.*/i, :precio.lte => params[:rango].to_i)
+      menor = params[:rango_menor].to_i
+      mayor = params[:rango_mayor].to_i
+      array = [menor, mayor]
+      @prods = Producto.all.where(title: /.*#{params[:query]}.*/i, :precio.gte => menor, :precio.lte => mayor)
               .any_of({marketplace: params[:marketplace][:marketplaces][0]},
                       {marketplace: params[:marketplace][:marketplaces][1]},
-                      {marketplace: params[:marketplace][:marketplaces][2]})
+                      {marketplace: params[:marketplace][:marketplaces][2]},
+                      {marketplace: params[:marketplace][:marketplaces][3]},
+                      {marketplace: params[:marketplace][:marketplaces][4]})
               .order_by(:precio => 'asc')
 
     end

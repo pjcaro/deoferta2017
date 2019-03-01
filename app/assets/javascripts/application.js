@@ -13,9 +13,34 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.slick
+//= require materialize
+//= require materialize/extras/nouislider
 //= require_tree .
 
 $(document).ready(function(){
+
+  var slider = document.getElementById('test-slider');
+  noUiSlider.create(slider, {
+   start: [0, 20000],
+   connect: true,
+   step: 100,
+   margin: 1000,
+   orientation: 'horizontal', // 'horizontal' or 'vertical'
+   range: {
+     'min': 0,
+     'max': 20000
+   },
+   format: wNumb({
+     decimals: 0
+   })
+  });
+
+  slider.noUiSlider.on('change', function (values) {
+    console.log('hola ', values);
+    $("#rango_menor").val(values[0]);
+    $("#rango_mayor").val(values[1]);
+   });
+
 
    $('.slider-for').slick({
     slidesToShow: 1,

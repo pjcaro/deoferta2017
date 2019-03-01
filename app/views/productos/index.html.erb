@@ -10,39 +10,7 @@
   </div>
   <div class="row">
     <div class="col m3">
-      <ul class="collapsible" data-collapsible="accordion">
-        <li>
-          <div class="collapsible-header"><i class="material-icons">filter_drama</i>Filtrar</div>
-          <div class="collapsible-body">
-            Por Tienda <br>
-            <%= form_tag filter_productos_path, method: :get, id: 'filtro' do %>
-              <%= collection_check_boxes(:marketplace ,:marketplaces, Marketplace.all.to_a, :nombre, :nombre) do |b| %>
-                    <div class="collection-check-box no-mostrar">
-                      <%= b.check_box(class: 'check_categories') %>
-                      <%= b.label %>
-                    </div>
-                <% end %>
-                <%= hidden_field_tag :query, params[:query] %>
-                <br>
-                Por precios
-                <div class="radio-buttons">
-                  <%= radio_button_tag(:rango, 6000) %>
-                  <%= label_tag(:rango_6000, "Hasta 6000") %>
-                  <%= radio_button_tag(:rango, 10000) %>
-                  <%= label_tag(:rango_10000, "Hasta 10000") %>
-                </div>
-                <div class="row center">
-                  <br>
-                  <%= button_tag "Filtrar", class: 'btn btn-primary' %>
-                </div>
-            <% end %>
-
-
-          </div>
-
-        </li>
-      </ul>
-
+      <%= render 'filtro' %> 
     </div>
     <div class="col m9">
 
