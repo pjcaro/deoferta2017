@@ -21,14 +21,14 @@ $(document).ready(function(){
 
   var slider = document.getElementById('test-slider');
   noUiSlider.create(slider, {
-   start: [0, 20000],
+   start: [0, 50000],
    connect: true,
    step: 100,
    margin: 1000,
    orientation: 'horizontal', // 'horizontal' or 'vertical'
    range: {
      'min': 0,
-     'max': 20000
+     'max': 50000
    },
    format: wNumb({
      decimals: 0
