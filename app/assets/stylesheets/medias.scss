@@ -20,3 +20,9 @@
         width: 85%;
     }
 }
+
+@media only screen and (max-width: 900px){
+    .small-card .precio {
+        padding-right: 1em;
+    }
+}
