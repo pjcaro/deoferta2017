@@ -1,0 +1,15 @@
+.noUi-target.noUi-horizontal .noUi-active .noUi-tooltip {
+  border-radius: 25px 25px 25px 0;
+}
+
+.noUi-target.noUi-horizontal .noUi-tooltip {
+  height: 40px;
+  width: 40px;
+  top: -25px;
+  left: -4px;
+}
+
+.noUi-tooltip span {
+  top: 10px;
+  left: -1px;
+}

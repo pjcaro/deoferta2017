@@ -33,6 +33,7 @@ $(document).ready(function(){
     centerMode: true,
     focusOnSelect: true
   });
+
   $('.button-collapse').sideNav({
       menuWidth: 250, // Default is 300
       closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
@@ -50,11 +51,14 @@ $(document).ready(function(){
    margin: 1000,
    orientation: 'horizontal', // 'horizontal' or 'vertical'
    range: {
-     'min': 0,
-     'max': 50000
+     min: 0,
+     max: 50000
    },
    format: wNumb({
-     decimals: 0
+      decimals: 0,
+      encoder: function(a){
+      return Math.round(a*100)/100;
+    }
    })
   });
 
