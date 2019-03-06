@@ -30,37 +30,45 @@ class ProductosController < ApplicationController
   def filter
     menor = params[:rango_menor].to_i
     mayor = params[:rango_mayor].to_i
-    array = [menor, mayor]
+    rango = [menor, mayor]
+    marketplaces = params[:marketplace][:marketplaces].reject { |m| m.empty? }
+
+    @prods = Producto.filter(params[:query], marketplaces, rango).records
+
+    @productos = Kaminari.paginate_array(
+      @prods.sort_by {|prod| prod.precio}
+    ).page(params[:page]).per(20)
+
     # raise
-    if mayor == 0 
-      @prods = Producto.all.where(title: /.*#{params[:query]}.*/i)
-              .any_of({marketplace: params[:marketplace][:marketplaces][0]},
-                      {marketplace: params[:marketplace][:marketplaces][1]},
-                      {marketplace: params[:marketplace][:marketplaces][2]},
-                      {marketplace: params[:marketplace][:marketplaces][3]},
-                      {marketplace: params[:marketplace][:marketplaces][4]})
-              .order_by(:precio => 'asc')
-    elsif params[:marketplace][:marketplaces] == [""] && mayor > 0
-      #method in no funciona para el where. REVISAR :precio.in => array
-      @prods = Producto.all.where(title: /.*#{params[:query]}.*/i, :precio.gte => menor, :precio.lte => mayor)
-              .order_by(:precio => 'asc')
+    # if mayor == 0 
+    #   @prods = Producto.all.where(title: /.*#{params[:query]}.*/i)
+    #           .any_of({marketplace: params[:marketplace][:marketplaces][0]},
+    #                   {marketplace: params[:marketplace][:marketplaces][1]},
+    #                   {marketplace: params[:marketplace][:marketplaces][2]},
+    #                   {marketplace: params[:marketplace][:marketplaces][3]},
+    #                   {marketplace: params[:marketplace][:marketplaces][4]})
+    #           .order_by(:precio => 'asc')
+    # elsif params[:marketplace][:marketplaces] == [""] && mayor > 0
+    #   #method in no funciona para el where. REVISAR :precio.in => rango
+    #   @prods = Producto.all.where(title: /.*#{params[:query]}.*/i, :precio.gte => menor, :precio.lte => mayor)
+    #           .order_by(:precio => 'asc')
 
-    else
-      menor = params[:rango_menor].to_i
-      mayor = params[:rango_mayor].to_i
-      array = [menor, mayor]
-      @prods = Producto.all.where(title: /.*#{params[:query]}.*/i, :precio.gte => menor, :precio.lte => mayor)
-              .any_of({marketplace: params[:marketplace][:marketplaces][0]},
-                      {marketplace: params[:marketplace][:marketplaces][1]},
-                      {marketplace: params[:marketplace][:marketplaces][2]},
-                      {marketplace: params[:marketplace][:marketplaces][3]},
-                      {marketplace: params[:marketplace][:marketplaces][4]})
-              .order_by(:precio => 'asc')
+    # else
+    #   menor = params[:rango_menor].to_i
+    #   mayor = params[:rango_mayor].to_i
+    #   rango = [menor, mayor]
+    #   @prods = Producto.all.where(title: /.*#{params[:query]}.*/i, :precio.gte => menor, :precio.lte => mayor)
+    #           .any_of({marketplace: params[:marketplace][:marketplaces][0]},
+    #                   {marketplace: params[:marketplace][:marketplaces][1]},
+    #                   {marketplace: params[:marketplace][:marketplaces][2]},
+    #                   {marketplace: params[:marketplace][:marketplaces][3]},
+    #                   {marketplace: params[:marketplace][:marketplaces][4]})
+    #           .order_by(:precio => 'asc')
 
-    end
+    # end
 
 
-    @productos = Kaminari.paginate_array(@prods).page(params[:page]).per(20)
+    # @productos = Kaminari.paginate_array(@prods).page(params[:page]).per(20)
 
 
     render :index

@@ -29,6 +29,52 @@ class Producto
     )
   end
 
+  def self.filter(query, marketplaces, rango)
+    if (marketplaces.size === 0)
+      marketplaces = [
+         "Fravega",
+         "Garbarino",
+         "Linio.com.ar",
+         "MercadoLibre",
+         "Musimundo",
+      ]
+    end
+    if rango[1] === 0
+      rango[1] = 50000
+    end
+    
+    marketplaces = marketplaces.collect { |m| m.downcase } 
+
+    __elasticsearch__.search(
+      {
+        size: 20,
+        query: {
+          bool: {
+            must:{
+              match: {
+                title: query,
+              },
+            },
+            filter: [
+              {
+                range: {
+                  precio: {
+                    gte:  rango[0],
+                    lt:   rango[1],
+                  }
+                }
+              },
+              {
+                terms: {
+                  marketplace: marketplaces
+                }
+              }
+            ]
+          }
+        }
+      }
+    )
+  end
 
   # field :price, type: String
   has_many :precios, autosave: true, dependent: :destroy
