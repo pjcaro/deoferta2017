@@ -58,12 +58,16 @@ $(document).ready(function(){
    })
   });
 
+  var menor = $("#rango_menor").val();
+  var mayor = $("#rango_mayor").val();
+
+  slider.noUiSlider.set([menor,mayor]);
+
   slider.noUiSlider.on('change', function (values) {
     console.log('hola ', values);
     $("#rango_menor").val(values[0]);
     $("#rango_mayor").val(values[1]);
    });
-
 });
 
 function marketplaces(){

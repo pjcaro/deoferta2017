@@ -4,9 +4,14 @@
     <div class="collapsible-body">
       Por Tienda <br>
       <%= form_tag filter_productos_path, method: :get, id: 'filtro' do %>
+        <% if params[:marketplace] === nil %>
+          <% marketplaces = [''] %>
+        <% else %>
+          <% marketplaces = params[:marketplace][:marketplaces] %>
+        <% end %>
         <%= collection_check_boxes(:marketplace ,:marketplaces, Marketplace.all.to_a, :nombre, :nombre) do |b| %>
               <div class="collection-check-box no-mostrar">
-                <%= b.check_box(class: 'check_categories') %>
+                <%= b.check_box({class: 'check_categories', checked: (marketplaces.include? b.value )}) %>
                 <%= b.label %>
               </div>
           <% end %>
@@ -15,8 +20,8 @@
           Por precios
           <div id="test-slider" class="noUi-target noUi-ltr noUi-horizontal"></div>
 
-          <%= hidden_field_tag :rango_menor %>
-          <%= hidden_field_tag :rango_mayor %>
+          <%= hidden_field_tag :rango_menor, params[:rango_menor] %>
+          <%= hidden_field_tag :rango_mayor, params[:rango_mayor] %>
           <%
 =begin%>
  <div class="radio-buttons">
