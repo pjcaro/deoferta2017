@@ -11,6 +11,13 @@ class Producto
   field :image, type: String
   field :marketplace, type: String
   field :precio, type: Integer
+  field :brand, type: String
+
+    # field :price, type: String
+  has_many :precios, autosave: true, dependent: :destroy
+  has_many :favoritos, dependent: :destroy
+
+  accepts_nested_attributes_for :precios
 
   def as_indexed_json(options={})
     as_json(except: [:id, :_id])
@@ -76,12 +83,6 @@ class Producto
     )
   end
 
-  # field :price, type: String
-  has_many :precios, autosave: true, dependent: :destroy
-  has_many :favoritos, dependent: :destroy
-
-  accepts_nested_attributes_for :precios
-
   def self.guardarProductos(response, marketplace)
 
     if marketplace === "MercadoLibre"
@@ -98,12 +99,15 @@ class Producto
       unless d['price'].nil?
         if marketplace === "MercadoLibre"
           precio = d['price'].round.to_s.gsub(/[$.]/, '').to_i
+          brand = d['attributes'].find{|s| s[:id] === 'BRAND'}[:value_name]
         else
           precio = d['price'].to_s.gsub(/[$.]/, '').to_i
+          brand = d['brand']
         end
         prod = Producto.where(title: d['title'],
                               permalink: d['permalink'],
                               image: d[image],
+                              brand: brand,
                               marketplace: marketplace).first_or_create
         prod.precios.where(valor: precio).first_or_create
 
