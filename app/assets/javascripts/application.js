@@ -81,3 +81,12 @@ function marketplaces(){
     }
   });
 }
+
+$(window).on("load", function() {
+  var viewportWidth = $(window).width();
+  if (viewportWidth > 600) {
+    $('#collapsible-filter > li').addClass('active');
+    $('#collapsible-filter > li > .collapsible-header').addClass('active');
+    $('#collapsible-filter > li > .collapsible-body').show();
+  }
+});
