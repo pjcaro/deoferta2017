@@ -83,6 +83,10 @@ class Producto
     require 'json'
     data = JSON.parse(response)
     data.each do |d|
+      p '--------------------------------------------------------'
+      p 'producto en data'
+      p d
+      p '--------------------------------------------------------'
       unless d.nil? 
         unless d['price'].nil?
           if marketplace === "MercadoLibre"
