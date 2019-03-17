@@ -83,26 +83,27 @@ class Producto
     require 'json'
     data = JSON.parse(response)
     data.each do |d|
-      unless d.nil? && d['price'].nil?
-        if marketplace === "MercadoLibre"
-          precio = d['price'].round.to_s.gsub(/[$.]/, '').to_i
-          brand = d['attributes'].find{|s| s[:id] === 'BRAND'}[:value_name]
-        else
-          precio = d['price'].to_s.gsub(/[$.]/, '').to_i
-          brand = d['brand']
+      unless d.nil? 
+        unless d['price'].nil?
+          if marketplace === "MercadoLibre"
+            precio = d['price'].round.to_s.gsub(/[$.]/, '').to_i
+            brand = d['attributes'].find{|s| s[:id] === 'BRAND'}[:value_name]
+          else
+            precio = d['price'].to_s.gsub(/[$.]/, '').to_i
+            brand = d['brand']
+          end
+          prod = Producto.where(title: d['title'],
+                                permalink: d['permalink'],
+                                image: d[image],
+                                brand: brand,
+                                marketplace: marketplace).first_or_create
+          prod.precios.where(valor: precio).first_or_create
+
+          prod.precio = prod.precios.last.valor
+          p "Se guardo o no"
+          p prod.save
         end
-        prod = Producto.where(title: d['title'],
-                              permalink: d['permalink'],
-                              image: d[image],
-                              brand: brand,
-                              marketplace: marketplace).first_or_create
-        prod.precios.where(valor: precio).first_or_create
-
-        prod.precio = prod.precios.last.valor
-        p "Se guardo o no"
-        p prod.save
       end
-
     end
 
   end
