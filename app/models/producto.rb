@@ -83,7 +83,7 @@ class Producto
     require 'json'
     data = JSON.parse(response)
     data.each do |d|
-      unless d['price'].nil?
+      unless d.nil? && d['price'].nil?
         if marketplace === "MercadoLibre"
           precio = d['price'].round.to_s.gsub(/[$.]/, '').to_i
           brand = d['attributes'].find{|s| s[:id] === 'BRAND'}[:value_name]
