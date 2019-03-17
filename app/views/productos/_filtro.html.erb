@@ -2,7 +2,7 @@
   <li>
     <div class="collapsible-header"><i class="material-icons">filter_drama</i>Filtrar</div>
     <div class="collapsible-body">
-      Por Tienda <br>
+      Por tienda <br>
       <%= form_tag filter_productos_path, method: :get, id: 'filtro' do %>
         <% if params[:marketplace] === nil %>
           <% marketplaces = [''] %>
@@ -10,19 +10,35 @@
           <% marketplaces = params[:marketplace][:marketplaces] %>
         <% end %>
         <%= collection_check_boxes(:marketplace ,:marketplaces, Marketplace.all.to_a, :nombre, :nombre) do |b| %>
-              <div class="collection-check-box no-mostrar">
-                <%= b.check_box({class: 'check_categories', checked: (marketplaces.include? b.value )}) %>
-                <%= b.label %>
-              </div>
-          <% end %>
-          <%= hidden_field_tag :query, params[:query] %>
-          <br>
-          Por precios
-          <div id="test-slider" class="noUi-target noUi-ltr noUi-horizontal"></div>
+          <div class="collection-check-box no-mostrar">
+            <%= b.check_box({class: 'check_categories', checked: (marketplaces.include? b.value )}) %>
+            <%= b.label %>
+          </div>
+        <% end %>
+        <%= hidden_field_tag :query, params[:query] %>
+        <br>
+        Por marca 
+        <br>
+        <% if params[:brands] === nil %>
+          <% paramsBrand = [''] %>
+        <% else %>
+          <% paramsBrand = params[:brands] %>
+        <% end %>
+        <% brands.each do |brand| %>
+          <p>
+            <label>
+              <%= check_box_tag 'brands[]', brand, (paramsBrand.include? brand), {multiple: true} %>
+              <span><%= brand %></span>
+            </label>
+          </p>
+        <% end %>
+        <br>
+        Por precios
+        <div id="test-slider" class="noUi-target noUi-ltr noUi-horizontal"></div>
 
-          <%= hidden_field_tag :rango_menor, params[:rango_menor] %>
-          <%= hidden_field_tag :rango_mayor, params[:rango_mayor] %>
-          <%
+        <%= hidden_field_tag :rango_menor, params[:rango_menor] %>
+        <%= hidden_field_tag :rango_mayor, params[:rango_mayor] %>
+        <%
 =begin%>
  <div class="radio-buttons">
             <%= radio_button_tag(:rango, 6000) %>

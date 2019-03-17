@@ -8,6 +8,7 @@ class ProductosController < ApplicationController
 
 
     @prods = Producto.search(params[:query]).records
+    @brands = @prods.pluck(:brand).uniq
     @productos = Kaminari.paginate_array(
       @prods.sort_by {|prod| prod.precio}
     ).page(params[:page]).per(20)
@@ -28,13 +29,25 @@ class ProductosController < ApplicationController
   end
 
   def filter
+
+    if params[:rango_mayor] != ''
+      mayor = params[:rango_mayor].to_i
+    else
+      mayor = 50000 
+    end
+
     menor = params[:rango_menor].to_i
-    mayor = params[:rango_mayor].to_i
+
     rango = [menor, mayor]
     marketplaces = params[:marketplace][:marketplaces].reject { |m| m.empty? }
-
-    @prods = Producto.filter(params[:query], marketplaces, rango).records
-
+    brands = params[:brands]
+    
+    if(brands === nil)
+      @prods = Producto.filter(params[:query], marketplaces).records.where(:precio.gte => menor, :precio.lte => mayor)     
+    else
+      @prods = Producto.filter(params[:query], marketplaces).records.where(:precio.gte => menor, :precio.lte => mayor).in(brand: brands)
+    end
+    @brands = @prods.pluck(:brand).uniq
     @productos = Kaminari.paginate_array(
       @prods.sort_by {|prod| prod.precio}
     ).page(params[:page]).per(20)

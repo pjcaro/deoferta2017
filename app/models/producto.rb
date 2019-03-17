@@ -36,7 +36,7 @@ class Producto
     )
   end
 
-  def self.filter(query, marketplaces, rango)
+  def self.filter(query, marketplaces)
     if (marketplaces.size === 0)
       marketplaces = [
          "Fravega",
@@ -46,15 +46,12 @@ class Producto
          "Musimundo",
       ]
     end
-    if rango[1] === 0
-      rango[1] = 50000
-    end
     
     marketplaces = marketplaces.collect { |m| m.downcase } 
 
     __elasticsearch__.search(
       {
-        size: 20,
+        size: 30,
         query: {
           bool: {
             must:{
@@ -62,21 +59,11 @@ class Producto
                 title: query,
               },
             },
-            filter: [
-              {
-                range: {
-                  precio: {
-                    gte:  rango[0],
-                    lt:   rango[1],
-                  }
-                }
-              },
-              {
-                terms: {
-                  marketplace: marketplaces
-                }
+            filter: {
+              terms: {
+                marketplace: marketplaces
               }
-            ]
+            }
           }
         }
       }
