@@ -24,12 +24,23 @@ class Producto
   end
 
   def self.search(query)
+    words = query.split(/\W+/)
+    matches = []
+    words.each do |word| 
+      match = {
+        match: {
+          title: word
+        }
+      }
+      matches.push(match)
+    end
+
     __elasticsearch__.search(
       {
         size: 20,
         query: {
-          match: {
-            title: query
+          bool: {
+            must: matches,
           }
         }
       }
@@ -37,6 +48,18 @@ class Producto
   end
 
   def self.filter(query, marketplaces)
+
+    words = query.split(/\W+/)
+    matches = []
+    words.each do |word| 
+      match = {
+        match: {
+          title: word
+        }
+      }
+      matches.push(match)
+    end
+
     if (marketplaces.size === 0)
       marketplaces = [
          "Fravega",
@@ -54,11 +77,7 @@ class Producto
         size: 30,
         query: {
           bool: {
-            must:{
-              match: {
-                title: query,
-              },
-            },
+            must: matches,
             filter: {
               terms: {
                 marketplace: marketplaces
