@@ -74,7 +74,7 @@ class Producto
 
     __elasticsearch__.search(
       {
-        size: 30,
+        size: 20,
         query: {
           bool: {
             must: matches,

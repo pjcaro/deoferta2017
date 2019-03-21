@@ -12,6 +12,7 @@ class ProductosController < ApplicationController
     @productos = Kaminari.paginate_array(
       @prods.sort_by {|prod| prod.precio}
     ).page(params[:page]).per(20)
+    @productos = @productos.uniq { |p| p.title }
   end
 
   def search
@@ -51,6 +52,7 @@ class ProductosController < ApplicationController
     @productos = Kaminari.paginate_array(
       @prods.sort_by {|prod| prod.precio}
     ).page(params[:page]).per(20)
+    @productos = @productos.uniq { |p| p.title }
 
     # raise
     # if mayor == 0 
