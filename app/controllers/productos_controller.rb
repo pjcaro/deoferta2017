@@ -8,6 +8,7 @@ class ProductosController < ApplicationController
 
 
     @prods = Producto.search(params[:query]).records
+    p @prods
     @brands = @prods.pluck(:brand).uniq
     @productos = Kaminari.paginate_array(
       @prods.sort_by {|prod| prod.precio}
@@ -48,6 +49,7 @@ class ProductosController < ApplicationController
       @prods = Producto.filter(params[:query], marketplaces).records.where(:precio.gte => menor, :precio.lte => mayor).in(brand: brands)
     end
     @brands = @prods.pluck(:brand).uniq
+    p @prods
     @productos = Kaminari.paginate_array(
       @prods.sort_by {|prod| prod.precio}
     ).page(params[:page]).per(20)
