@@ -112,7 +112,7 @@ class Producto
           if marketplace === "MercadoLibre"
             category = categoria
             precio = d['price'].round.to_s.gsub(/[$.]/, '').to_i
-            if d[:attributes].find{|s| s[:id] === 'BRAND'} === nil
+            if d[:attributes] === nil
               brand = 'Otros'
             else
               brand = d[:attributes].find{|s| s[:id] === 'BRAND'}[:value_name]
