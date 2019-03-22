@@ -10,7 +10,7 @@ namespace :update_products do
       data = response.parsed_response["data"].to_json
       marketplace = response.parsed_response["marketplace"].to_s
       unless data == "null"
-        Producto.guardarProductos(data, marketplace)
+        Producto.guardarProductos(data, marketplace, nil)
         p marketplace
       else
         p '-----------------------------'
@@ -23,7 +23,7 @@ namespace :update_products do
     Categoria::CATEGORIAS.each do |categoria|
       response = MercadoLibre.obtenerProductos(categoria)
       data = response.to_json
-      Producto.guardarProductos(data, "MercadoLibre")
+      Producto.guardarProductos(data, "MercadoLibre", categoria)
     end
 
     # p Producto.guardarProductos(response.parsed_response['data'].to_json)

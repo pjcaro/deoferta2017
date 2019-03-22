@@ -12,6 +12,7 @@ class Producto
   field :marketplace, type: String
   field :precio, type: Integer
   field :brand, type: String
+  field :category, type: String
 
     # field :price, type: String
   has_many :precios, autosave: true, dependent: :destroy
@@ -89,7 +90,7 @@ class Producto
     )
   end
 
-  def self.guardarProductos(response, marketplace)
+  def self.guardarProductos(response, marketplace, categoria)
 
     if marketplace === "MercadoLibre"
       image = 'thumbnail'
@@ -109,6 +110,7 @@ class Producto
       unless d.nil? 
         unless d['price'].nil?
           if marketplace === "MercadoLibre"
+            category = categoria
             precio = d['price'].round.to_s.gsub(/[$.]/, '').to_i
             if d['attributes'].find{|s| s[:id] === 'BRAND'} === nil
               brand = 'Otros'
@@ -116,14 +118,16 @@ class Producto
               brand = d['attributes'].find{|s| s[:id] === 'BRAND'}[:value_name]
             end
           else
+            category = d['category']
             precio = d['price'].to_s.gsub(/[$.]/, '').to_i
             brand = d['brand']
           end
           prod = Producto.where(title: d['title'],
                                 permalink: d['permalink'],
-                                brand: brand,
                                 marketplace: marketplace).first_or_create
           prod.precios.where(valor: precio).first_or_create
+          prod.category = category.capitalize
+          prod.brand = brand.capitalize
           prod.image = d[image]
           prod.precio = prod.precios.last.valor
           p "Se guardo o no"

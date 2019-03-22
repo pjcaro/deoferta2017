@@ -33,6 +33,22 @@
           </p>
         <% end %>
         <br>
+        Por categoria 
+        <br>
+        <% if params[:categories] === nil %>
+          <% paramsCategories = [''] %>
+        <% else %>
+          <% paramsCategories = params[:categories] %>
+        <% end %>
+        <% categories.each do |category| %>
+          <p>
+            <label>
+              <%= check_box_tag 'categories[]', category, (paramsCategories.include? category), {multiple: true} %>
+              <span><%= category %></span>
+            </label>
+          </p>
+        <% end %>
+        <br>
         Por precios
         <div id="test-slider" class="noUi-target noUi-ltr noUi-horizontal"></div>
 

@@ -9,7 +9,8 @@ class ProductosController < ApplicationController
 
     @prods = Producto.search(params[:query]).records
     p @prods
-    @brands = @prods.pluck(:brand).uniq
+    @brands = @prods.pluck(:brand).uniq.sort
+    @categories = @prods.pluck(:category).uniq.sort
     @productos = Kaminari.paginate_array(
       @prods.sort_by {|prod| prod.precio}
     ).page(params[:page]).per(20)
@@ -42,13 +43,19 @@ class ProductosController < ApplicationController
     rango = [menor, mayor]
     marketplaces = params[:marketplace][:marketplaces].reject { |m| m.empty? }
     brands = params[:brands]
+    categories = params[:categories]
     
-    if(brands === nil)
-      @prods = Producto.filter(params[:query], marketplaces).records.where(:precio.gte => menor, :precio.lte => mayor)     
-    else
+    if brands === nil && categories === nil
+      @prods = Producto.filter(params[:query], marketplaces).records.where(:precio.gte => menor, :precio.lte => mayor)
+    elsif brands != nil && categories === nil
       @prods = Producto.filter(params[:query], marketplaces).records.where(:precio.gte => menor, :precio.lte => mayor).in(brand: brands)
+    elsif brands === nil && categories != nil
+      @prods = Producto.filter(params[:query], marketplaces).records.where(:precio.gte => menor, :precio.lte => mayor).in(category: categories)
+    else
+      @prods = Producto.filter(params[:query], marketplaces).records.where(:precio.gte => menor, :precio.lte => mayor).in(brand: brands).in(category: categories)
     end
-    @brands = @prods.pluck(:brand).uniq
+    @brands = @prods.pluck(:brand).uniq.sort
+    @categories = @prods.pluck(:category).uniq.sort
     p @prods
     @productos = Kaminari.paginate_array(
       @prods.sort_by {|prod| prod.precio}
@@ -87,7 +94,6 @@ class ProductosController < ApplicationController
 
 
     render :index
-    #code
   end
 
   private
