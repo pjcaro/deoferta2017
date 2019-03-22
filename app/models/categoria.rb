@@ -1,6 +1,6 @@
 class Categoria
 
-  C = [
+  CATEGORIAS = [
     {
         "id": "MLA1055",
         "name": "Celulares y Smartphones"
@@ -27,6 +27,6 @@ class Categoria
     }
   ]
 
-  CATEGORIAS = ["MLA1055", "MLA4072", "MLA1144", "MLA5726", "MLA3025", "MLA1002"]
+  #CATEGORIAS = ["MLA1055", "MLA4072", "MLA1144", "MLA5726", "MLA3025", "MLA1002"]
 
 end

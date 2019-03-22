@@ -21,9 +21,9 @@ namespace :update_products do
     end
 
     Categoria::CATEGORIAS.each do |categoria|
-      response = MercadoLibre.obtenerProductos(categoria)
+      response = MercadoLibre.obtenerProductos(categoria[:id])
       data = response.to_json
-      Producto.guardarProductos(data, "MercadoLibre", categoria)
+      Producto.guardarProductos(data, "MercadoLibre", categoria[:name])
     end
 
     # p Producto.guardarProductos(response.parsed_response['data'].to_json)
