@@ -139,7 +139,7 @@ class App
        :marketplace => "Musimundo",
        :paginate => "a.after@href",
        :limit => 1,
-       :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "brand":"search=(.*)", "price": "^[^(,)]*"}
+       :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "price": "^[^(,)]*"}
      },
      {
       :url => "https://www.musimundo.com/catalogo/1615~telefonia/1616~telefonos-celulares/Listado?page=0&limitRows=36",
@@ -148,7 +148,7 @@ class App
       :marketplace => "Musimundo",
       :paginate => "a.after@href",
       :limit => 1,
-      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "brand":"search=(.*)", "price": "^[^(,)]*"}
+      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "price": "^[^(,)]*"}
 
     },
     {
@@ -158,7 +158,7 @@ class App
       :marketplace => "Musimundo",
       :paginate => "a.after@href",
       :limit => 1,
-      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "brand":"search=(.*)", "price": "^[^(,)]*"}
+      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "price": "^[^(,)]*"}
     },
     {
       :url => "https://www.musimundo.com/catalogo/1625~informatica/1629~computadoras/1633~notebook/Listado?page=0&limitRows=36",
@@ -167,7 +167,7 @@ class App
       :marketplace => "Musimundo",
       :paginate => "a.after@href",
       :limit => 1,
-      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "brand":"search=(.*)", "price": "^[^(,)]*"}
+      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "price": "^[^(,)]*"}
     },
     {
       :url => "https://www.musimundo.com/catalogo/1431~gaming/1432~consolas-de-video-juegos/2021~ps4/Listado?page=0&limitRows=36",
@@ -176,7 +176,7 @@ class App
       :marketplace => "Musimundo",
       :paginate => "a.after@href",
       :limit => 1,
-      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "brand":"search=(.*)", "price": "^[^(,)]*"}
+      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "price": "^[^(,)]*"}
     },
     {
       :url => "https://www.musimundo.com/catalogo/1431~gaming/1994~juegos-ps4/Listado?page=0&limitRows=36",
@@ -185,7 +185,7 @@ class App
       :marketplace => "Musimundo",
       :paginate => "a.after@href",
       :limit => 1,
-      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "brand":"search=(.*)", "price": "^[^(,)]*"}
+      :regex => {"title":"[^\\t\\n\\s].+[^\\t\\n\\s]", "price": "^[^(,)]*"}
     },
     {
       :url => "https://www.fravega.com/celulares",
