@@ -121,11 +121,10 @@ class Producto
           end
           prod = Producto.where(title: d['title'],
                                 permalink: d['permalink'],
-                                image: d[image],
                                 brand: brand,
                                 marketplace: marketplace).first_or_create
           prod.precios.where(valor: precio).first_or_create
-
+          prod.image = d[image]
           prod.precio = prod.precios.last.valor
           p "Se guardo o no"
           p prod.save
