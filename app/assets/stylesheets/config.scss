@@ -124,3 +124,25 @@ nav ul {
 #sidenav-overlay {
   z-index: 1;
 }
+
+#error_explanation{
+  h2{
+    font-size: 1em;
+    color: #a94442;
+    font-weight: bold;
+    padding: 1em;
+  }
+  ul{
+    font-size: 1em;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-right: 2em;
+    padding-left: 2em;
+    li {
+      list-style-type: circle;
+    }
+  }
+}

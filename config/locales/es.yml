@@ -16,6 +16,21 @@ es:
           other: "Mostrando <b>all %{count}</b> %{entry_name}"
       more_pages:
         display_entries: "Mostrando %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> en total"
+  mongoid:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "Debes completar el campo email"
+              not_found: "No se encontro el email"
+    attributes:
+      user:
+        current_password: "Contraseña actual: "
+        email: "Email: "
+        password: "Contraseña: " 
+        password_confirmation: "Confirmación de la contraseña: "
+        remember_me: Recordarme
   activerecord:
     errors:
       messages:

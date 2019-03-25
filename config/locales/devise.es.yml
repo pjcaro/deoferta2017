@@ -54,5 +54,5 @@ es:
       not_found: El Email ingresado no existe
       not_locked: no estaba bloqueada
       not_saved:
-        one: 'Ocurrió un error al tratar de guardar %{resource}:'
-        other: 'Ocurrieron %{count} errores al tratar de guardar %{resource}:'
+        one: 'Ocurrió un error al tratar de guardar el usuario:'
+        other: 'Ocurrieron %{count} errores al tratar de guardar el usuario:'
