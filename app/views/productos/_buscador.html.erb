@@ -1,6 +1,10 @@
 <div class="center">
   <%= form_tag(productos_path, method: :get, class: 'buscador') do %>
-    <%= text_field_tag 'query', params[:query], placeholder: 'Que es lo que estas buscando?' %>
+    <%= text_field_tag 'query', params[:query],
+      required: true,
+      pattern: '^[a-zA-Z0-9_ ]*$',
+      placeholder: 'Que es lo que estas buscando?',
+      title: "Solo puedes ingresar números y letras"%>
     <%= button_tag(type: 'submit', class: 'btn-sin-estilo') do %>
       <i class="material-icons">search</i>
     <% end %>
